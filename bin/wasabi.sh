@@ -134,43 +134,42 @@ bootstrap() {
     fi
 
     #Install Maven
-    gosu wasabi apt-get install -y maven
+    apt-get install -y maven
 
     #Install JAVA
-    gosu wasabi apt-get install -y default-jdk
-    gosu wasabi cp /etc/environment /tmp/environment
-    gosu wasabi chmod 666 /tmp/environment
-    gosu wasabi echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/" >> /tmp/environment
-    gosu wasabi cp /tmp/environment /etc/environment
-    gosu wasabi rm -rf /tmp/environment
+    apt-get install -y default-jdk
+    cp /etc/environment /tmp/environment
+    chmod 666 /tmp/environment
+    echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/" >> /tmp/environment
+    cp /tmp/environment /etc/environment
+    rm -rf /tmp/environment
 
     #Install git-flow
-    gosu wasabi apt-get install -y git-flow
+    apt-get install -y git-flow
 
     #Install Nodejs
-    curl -sL https://deb.nodesource.com/setup_6.x | gosu wasabi -E bash -
-    gosu wasabi apt-get install -y nodejs
-    gosu wasabi npm install -g bower
-    gosu wasabi npm install -g grunt-cli
-    gosu wasabi npm install -g yo
+    curl -sL https://deb.nodesource.com/setup_6.x | -E bash -
+    apt-get install -y nodejs
+    npm install -g bower
+    npm install -g grunt-cli
+    npm install -g yo
 
     #Install compass
-    gosu wasabi apt-get install -y ruby
-    gosu wasabi apt-get install -y ruby-compass
+    apt-get install -y ruby
+    apt-get install -y ruby-compass
 
     #Install docker
-    gosu wasabi apt-get install -y apt-transport-https ca-certificates
-    gosu wasabi apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-    gosu wasabi echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /tmp/docker.list
-    gosu wasabi cp /tmp/docker.list /etc/apt/sources.list.d/docker.list
-    gosu wasabi rm -rf /tmp/docker.list
-    gosu wasabi apt-get purge lxc-docker
-    gosu wasabi apt-get update
-    gosu wasabi apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
-    gosu wasabi apt-get install -y docker-engine
+    apt-get install -y apt-transport-https ca-certificates
+    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /tmp/docker.list
+    cp /tmp/docker.list /etc/apt/sources.list.d/docker.list
+    rm -rf /tmp/docker.list
+    apt-get purge lxc-docker
+    apt-get update
+    apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
+    apt-get install -y docker-engine
 
-    gosu root usermod -aG docker wasabi
-    gosu root usermod -aG docker root
+    usermod -aG docker root
     echo "${green}installed dependencies.${reset}"
   else
     echo "${green}FIXME: linux install of ( ${formulas[@]} ${taps[@]} ${casks[@]} ) not yet implemented${reset}"
