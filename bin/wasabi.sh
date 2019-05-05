@@ -169,7 +169,6 @@ bootstrap() {
     apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
     apt-get install -y docker-engine
 
-    usermod -aG docker root
     echo "${green}installed dependencies.${reset}"
   else
     echo "${green}FIXME: linux install of ( ${formulas[@]} ${taps[@]} ${casks[@]} ) not yet implemented${reset}"
