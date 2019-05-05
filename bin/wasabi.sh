@@ -169,6 +169,8 @@ bootstrap() {
     gosu wasabi apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
     gosu wasabi apt-get install -y docker-engine
 
+    gosu root usermod -aG docker wasabi
+    gosu root usermod -aG docker root
     echo "${green}installed dependencies.${reset}"
   else
     echo "${green}FIXME: linux install of ( ${formulas[@]} ${taps[@]} ${casks[@]} ) not yet implemented${reset}"
