@@ -148,7 +148,7 @@ bootstrap() {
     apt-get install -y git-flow
 
     #Install Nodejs
-    curl -sL https://deb.nodesource.com/setup_6.x | -E bash -
+    curl -sL https://deb.nodesource.com/setup_6.x | bash -
     apt-get install -y nodejs
     npm install -g bower
     npm install -g grunt-cli
